@@ -7,6 +7,7 @@ import Cookies from "universal-cookie";
 function App() {
   const cookies = new Cookies();
   const [isauth, setisauth] = useState(cookies.get("auth-token"));
+  const [room, setroom] = useState(null);
   if (!isauth) {
     return (
       <div className="App">
@@ -19,6 +20,19 @@ function App() {
       </div>
     );
   }
+  return (
+    <div>
+      {room ? (
+        <div>chat</div>
+      ) : (
+        <div>
+          <h2>Enter Room Name</h2>
+          <input />
+          <button>Enter chat</button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default App;
