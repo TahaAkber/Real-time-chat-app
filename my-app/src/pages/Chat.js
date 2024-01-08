@@ -5,6 +5,7 @@ import {
   where,
   query,
   onSnapshot,
+  orderBy,
 } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -16,8 +17,12 @@ function Chat(props) {
   const [messages, setmessages] = useState([]);
   const [user] = useAuthState(auth);
   useEffect(() => {
-    const querymessages = query(chatref, where("room", "==", props.room));
-    const unsubscribe =onSnapshot(querymessages, (snapshot) => {
+    const querymessages = query(
+      chatref,
+      where("room", "==", props.room),
+      orderBy("createdAt")
+    );
+    const unsubscribe = onSnapshot(querymessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
@@ -37,21 +42,27 @@ function Chat(props) {
     setchat("");
   };
   return (
-    <div className="box">
-      <div className="chat">
-        <input
-          onChange={(e) => {
-            setchat(e.target.value);
-          }}
-          value={chat}
-        />
-        <button type="submit" onClick={handlefunction} className="button">
-          submit
-        </button>
-        <div>
-          {messages.map((i) => (
-            <h1>{i.text}</h1>
-          ))}
+    <div>
+      <h1>Welcome To: {props.room.toUpperCase()}</h1>
+      <div className="box">
+        <div className="chat">
+          <input
+            onChange={(e) => {
+              setchat(e.target.value);
+            }}
+            value={chat}
+          />
+          <button type="submit" onClick={handlefunction} className="button">
+            send
+          </button>
+          <div>
+            {messages.map((i) => (
+              <div key={messages.id}>
+                <span className="message">{user.displayName}: </span>
+                {i.text}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

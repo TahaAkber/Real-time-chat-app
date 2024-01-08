@@ -40,3 +40,6 @@ input {
 .button:hover {
   background-color: #45a049;
 }
+.message {
+  font-weight: bold;
+}

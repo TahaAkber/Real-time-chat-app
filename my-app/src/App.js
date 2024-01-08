@@ -3,11 +3,19 @@ import "./App.css";
 import Home from "./pages/Chat";
 import Login from "./pages/login";
 import { useRef } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "./config/firebase";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Chat from "./pages/Chat";
 function App() {
   const cookies = new Cookies();
+  const signout = async () => {
+    await signOut(auth);
+    cookies.remove("auth-Token");
+    setisauth(false);
+    setroom(null);
+  };
   const [isauth, setisauth] = useState(cookies.get("auth-token"));
   const [room, setroom] = useState(null);
   const roomsetref = useRef(null);
@@ -35,11 +43,15 @@ function App() {
             onClick={() => {
               setroom(roomsetref.current.value);
             }}
+            className="button"
           >
             Enter chat
           </button>
         </div>
       )}
+      <div>
+        <button onClick={signout}>Signout</button>
+      </div>
     </div>
   );
 }

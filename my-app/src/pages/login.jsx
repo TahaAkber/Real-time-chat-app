@@ -14,7 +14,9 @@ function Login(props) {
   return (
     <div>
       <p>Sign Up using google</p>
-      <button onClick={signin}>Sign In Using Google</button>
+      <button onClick={signin} className="button">
+        Sign In Using Google
+      </button>
     </div>
   );
 }
