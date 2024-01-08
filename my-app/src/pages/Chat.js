@@ -3,6 +3,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../config/firebase";
+import "../styles/chat.css";
 function Chat(props) {
   const chatref = collection(db, "messages");
   const [chat, setchat] = useState(null);
@@ -18,16 +19,18 @@ function Chat(props) {
     setchat("");
   };
   return (
-    <div className="chat">
-      <input
-        onChange={(e) => {
-          setchat(e.target.value);
-        }}
-        value={chat}
-      />
-      <button type="submit" onClick={handlefunction} className="button">
-        submit
-      </button>
+    <div className="box">
+      <div className="chat">
+        <input
+          onChange={(e) => {
+            setchat(e.target.value);
+          }}
+          value={chat}
+        />
+        <button type="submit" onClick={handlefunction} className="button">
+          submit
+        </button>
+      </div>
     </div>
   );
 }
