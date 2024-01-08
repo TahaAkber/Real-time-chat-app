@@ -50,7 +50,9 @@ function App() {
         </div>
       )}
       <div>
-        <button onClick={signout}>Signout</button>
+        <button onClick={signout} className="button">
+          Signout
+        </button>
       </div>
     </div>
   );
