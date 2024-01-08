@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import {
+  addDoc,
+  collection,
+  where,
+  query,
+  onSnapshot,
+} from "firebase/firestore";
 import { serverTimestamp } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../config/firebase";
@@ -7,7 +13,19 @@ import "../styles/chat.css";
 function Chat(props) {
   const chatref = collection(db, "messages");
   const [chat, setchat] = useState(null);
+  const [messages, setmessages] = useState([]);
   const [user] = useAuthState(auth);
+  useEffect(() => {
+    const querymessages = query(chatref, where("room", "==", props.room));
+    const unsubscribe =onSnapshot(querymessages, (snapshot) => {
+      let messages = [];
+      snapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id });
+      });
+      setmessages(messages);
+    });
+    return () => unsubscribe();
+  }, []);
   const handlefunction = async () => {
     if (chat === "") return;
     await addDoc(chatref, {
@@ -30,6 +48,11 @@ function Chat(props) {
         <button type="submit" onClick={handlefunction} className="button">
           submit
         </button>
+        <div>
+          {messages.map((i) => (
+            <h1>{i.text}</h1>
+          ))}
+        </div>
       </div>
     </div>
   );
