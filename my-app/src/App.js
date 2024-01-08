@@ -25,7 +25,7 @@ function App() {
       {room ? (
         <div>
           {" "}
-          <Chat />
+          <Chat room={room} />
         </div>
       ) : (
         <div>
