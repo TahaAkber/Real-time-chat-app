@@ -23,8 +23,9 @@ function App() {
   if (!isauth) {
     return (
       <div className="App">
-        {/* <Home /> */}
-        <Login setisauth={setisauth} />
+        <div className="login">
+          <Login setisauth={setisauth} />
+        </div>
       </div>
     );
   }
