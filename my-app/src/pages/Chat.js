@@ -25,8 +25,10 @@ function Chat(props) {
     const unsubscribe = onSnapshot(querymessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
+        console.log(doc.data());
+        messages.push(doc.data());
       });
+      console.log(messages);
       setmessages(messages);
     });
     return () => unsubscribe();
@@ -57,8 +59,8 @@ function Chat(props) {
           </button>
           <div>
             {messages.map((i) => (
-              <div key={messages.id}>
-                <span className="message">{user.displayName}: </span>
+              <div key={i.id}>
+                <span className="message">{i.user}: </span>
                 {i.text}
               </div>
             ))}

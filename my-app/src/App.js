@@ -12,7 +12,7 @@ function App() {
   const cookies = new Cookies();
   const signout = async () => {
     await signOut(auth);
-    cookies.remove("auth-Token");
+    cookies.remove("auth-token");
     setisauth(false);
     setroom(null);
   };
