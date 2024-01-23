@@ -29,7 +29,7 @@ Before you begin, ensure you have the following requirements:
 1. Clone the repository:
 
    ```bash
-  gh repo clone TahaAkber/Real-time-chat-app
+    gh repo clone TahaAkber/Real-time-chat-app
    ```
 
 2. Navigate to the project directory:
