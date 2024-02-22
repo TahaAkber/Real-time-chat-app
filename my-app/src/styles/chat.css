@@ -10,7 +10,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; /* This ensures the container takes up the full viewport height */
-  background-color: #6b96be;
 }
 
 .chat {
@@ -43,4 +42,11 @@ input {
 .message {
   font-weight: bold;
   color: white;
+}
+.button {
+  margin-bottom: 100px;
+}
+span {
+  display: inline-block;
+  margin: -100px;
 }

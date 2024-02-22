@@ -15,7 +15,6 @@ function Chat(props) {
   const chatref = collection(db, "messages");
   const [chat, setchat] = useState(null);
   const [messages, setmessages] = useState([]);
-  const [user] = useAuthState(auth);
   useEffect(() => {
     const querymessages = query(
       chatref,
@@ -25,10 +24,8 @@ function Chat(props) {
     const unsubscribe = onSnapshot(querymessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
-        console.log(doc.data());
         messages.push(doc.data());
       });
-      console.log(messages);
       setmessages(messages);
     });
     return () => unsubscribe();

@@ -13,7 +13,6 @@ function Login(props) {
   };
   return (
     <div>
-      <p>Sign Up using google</p>
       <button onClick={signin} className="button">
         Sign In Using Google
       </button>

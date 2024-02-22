@@ -43,3 +43,8 @@
   font: 1em sans-serif;
   background-color: white;
 }
+.loginheading {
+  color: white;
+  display: inline;
+  font-size: 40px;
+}

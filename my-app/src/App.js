@@ -23,6 +23,12 @@ function App() {
   if (!isauth) {
     return (
       <div className="App">
+        <div className="chatheading">
+          <h1>Welcome To Chat</h1>
+          <span>
+            <h6>Login To Continue</h6>
+          </span>
+        </div>
         <div className="login">
           <Login setisauth={setisauth} />
         </div>
